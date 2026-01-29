@@ -1,7 +1,7 @@
 const questions = [
     {
         question: "what is 2+2 ?",
-        answer: [
+        answers: [
             { text: "4", correct: true },
             { text: "3", correct: false },
             { text: "2", correct: false },
@@ -10,7 +10,7 @@ const questions = [
     },
     {
         question: "what is 3+3 ?",
-        answer: [
+        answers: [
             { text: "6", correct: true },
             { text: "3", correct: false },
             { text: "2", correct: false },
@@ -19,7 +19,7 @@ const questions = [
     },
     {
         question: "what is 4+4 ?",
-        answer: [
+        answers: [
             { text: "8", correct: true },
             { text: "3", correct: false },
             { text: "2", correct: false },
@@ -28,7 +28,7 @@ const questions = [
     },
     {
         question: "what is 5+5 ?",
-        answer: [
+        answers: [
             { text: "10", correct: true },
             { text: "3", correct: false },
             { text: "2", correct: false },
@@ -52,6 +52,7 @@ function startQuiz() {
 }
 
 function showQuestion() {
+    resetState();
     let currentQuestion = questions[currentQuestionIndex];
     let questionNo = currentQuestionIndex + 1;
     questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
@@ -60,9 +61,16 @@ function showQuestion() {
         const button = document.createElement("button");
         button.innerHTML = answer.text;
         button.classList.add("btn");
-        answerButton.appendChild("button");
+        answerButtons.appendChild("button");
 
     });
+}
+
+function resetState(){
+    nextButton.style.display = "none";
+    while(answerButtons.firstChild){
+        answerButtons.removeChild(answerButtons.firstChild);
+    }
 }
 
 startQuiz();
